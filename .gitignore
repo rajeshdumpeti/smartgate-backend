@@ -6,7 +6,7 @@ __pycache__/
 .DS_Store
 
 # Ignore all face data
-app/data/faces/
+# app/data/faces/
 *.jpg
 *.jpeg
 *.png
