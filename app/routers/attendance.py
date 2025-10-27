@@ -5,6 +5,7 @@ from app.utils.face_utils import match_face_to_student
 from app.utils.file_utils import save_base64_image
 from app.models.event import Event
 from pydantic import BaseModel
+from app.scripts.live_camera import start_live_detection, stop_live_detection
 
 router = APIRouter()
 
@@ -62,3 +63,21 @@ def detect_face(payload: FaceDetectRequest, db: Session = Depends(get_db)):
             "distance": distance,
             "event_type": event_type,
         }
+
+
+@router.post("/start-live")
+def start_live_detection_api():
+    """
+    Start the live camera detection loop.
+    This triggers live_camera.py to start reading frames
+    and automatically send them for recognition.
+    """
+    return start_live_detection()
+
+
+@router.post("/stop-live")
+def stop_live_detection_api():
+    """
+    Stop the running live detection loop.
+    """
+    return stop_live_detection()
