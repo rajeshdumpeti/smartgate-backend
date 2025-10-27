@@ -4,3 +4,12 @@ __pycache__/
 .env
 *.sqlite3
 .DS_Store
+
+# Ignore all face data
+app/data/faces/
+*.jpg
+*.jpeg
+*.png
+
+# Ignore temp detection logs
+*.log

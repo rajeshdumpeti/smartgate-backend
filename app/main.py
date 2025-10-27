@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import student, event
 from app.core.db import engine
 from app.models import student as student_model, event as event_model
-from app.core.db import engine
+from app.routers import student, attendance, event
 
 app = FastAPI(title="SmartGate Backend", version="1.0")
 
@@ -16,12 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# # Create tables if not exist
-# student_model.Base.metadata.create_all(bind=engine)
-# event_model.Base.metadata.create_all(bind=engine)
+app.include_router(student.router, prefix="/api/v1/students", tags=["Students"])
+app.include_router(event.router, prefix="/api/v1/events", tags=["Events"])
+app.include_router(attendance.router, prefix="/api/v1/attendance", tags=["Attendance"])
 
-# app.include_router(student.router, prefix="/api/v1/students", tags=["Students"])
-# app.include_router(event.router, prefix="/api/v1/events", tags=["Events"])
 
 
 @app.get("/")

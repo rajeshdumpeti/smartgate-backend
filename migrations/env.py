@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from app.core.config import settings
 from app.core.db import Base
 from app.models.student import Student  # ensure model is imported so metadata has it
-# from app.models.event import Event   # will be added later
+from app.models.event import Event   # will be added later
 
 # Alembic Config object
 config = context.config
