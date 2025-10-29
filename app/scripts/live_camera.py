@@ -48,7 +48,7 @@ def camera_loop():
         if not ret:
             break
 
-        cv2.imshow("SmartGate Live Feed", frame)
+        # cv2.imshow("SmartGate Live Feed", frame)
         frame_counter += 1
 
         # Process every 30th frame
@@ -57,7 +57,7 @@ def camera_loop():
             send_frame_to_backend(base64_str)
 
         # Press Q to stop manually
-        if cv2.waitKey(1) & 0xFF == ord("q"):
+        # if cv2.waitKey(1) & 0xFF == ord("q"):
             is_running = False
 
     cap.release()
